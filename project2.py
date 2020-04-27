@@ -21,6 +21,7 @@ def parseLines(lines):
     units = None
     matrix = []
 
+    count = 0
     for line in lines:
         if re.search('^%.*$', line):
             continue
@@ -28,10 +29,12 @@ def parseLines(lines):
             num_processes = int(line.split('=')[1])
         elif re.search('num_resources=', line):
              num_resources = int(line.split('=')[1])
-        elif re.search('^[0-9]+,[0-9]+,[0-9]+$', line):
-            units = [int(i) for i in line.split(',')]
         elif re.search('^([01]+,)*[01]$', line):
-            matrix.append([int(i) for i in line.split(',')])
+            if not count:
+                units = [int(i) for i in line.split(',')]
+                count += 1
+            else:
+                matrix.append([int(i) for i in line.split(',')])
 
     return (num_processes, num_resources, units, matrix)
 
