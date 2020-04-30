@@ -29,10 +29,10 @@ def parseLines(lines):
             num_processes = int(line.split('=')[1])
         elif re.search('num_resources=', line):
              num_resources = int(line.split('=')[1])
-        elif re.search('^([01]+,)*[01]$', line):
+        elif re.search('^([0-9]+,)*[0-9]$', line):
             if not count:
                 units = [int(i) for i in line.split(',')]
-                count += 1
+                count = 1
             else:
                 matrix.append([int(i) for i in line.split(',')])
 
@@ -61,6 +61,9 @@ def main(filename):
     num_resources = parsedInfo[1]
     units = parsedInfo[2]
     matrix = parsedInfo[3]
+
+    print(units)
+    print(matrix)
 
     count = 0
     for i in range(len(matrix)):
