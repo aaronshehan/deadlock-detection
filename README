@@ -3,4 +3,8 @@ Benson Phillips
 
 Project 2
 
+To run the program, an input file must be passed in as a command line argument.
+
 To run the program: python3 project2.py <input_file>
+  Ex: python3 project2.py input.txt
+  
